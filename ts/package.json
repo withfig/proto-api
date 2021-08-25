@@ -1,0 +1,21 @@
+{
+  "name": "proto-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index",
+  "types": "./dist/index",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch & nodemon dist"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.12",
+    "protobufjs": "^6.11.2",
+    "ts-proto": "^1.82.5"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  },
+  "author": "",
+  "license": "ISC"
+}

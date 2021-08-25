@@ -1,0 +1,88 @@
+syntax = "proto3";
+option objc_class_prefix = "FIG";
+package fig;
+
+message ClientOriginatedMessage {
+  optional int64 id = 1;
+
+  oneof submessage {
+      GetBufferRequest get_buffer_request = 100;
+      PositionWindowRequest position_window_request = 101;
+      PseudoterminalExecuteRequest pty_request = 102;
+  }
+}
+
+message ServerOriginatedMessage {
+  optional int64 id = 1;
+
+  // Responses to ClientOriginatedMessages of the corresponding type
+  oneof submessage {
+    string error = 2;  // Set if request was malformed
+    PositionWindowResponse position_window_response = 200;
+  }
+    
+}
+
+message PseudoterminalWriteRequest {
+    oneof input {
+      string text = 1;
+      string octal = 2;
+
+    }
+}
+
+message PseudoterminalExecuteRequest {
+  string command = 1;
+  optional string workingDirectory = 2;
+  optional bool backgroundJob = 3;
+  optional bool isPipelined = 4;
+  repeated EnvironmentVariable env = 5;
+}
+
+message EnvironmentVariable {
+  string key = 1;
+  optional string value = 2;
+}
+
+message PositionWindowRequest {
+  Point anchor = 1;
+  Size size = 2;
+  optional bool dryrun = 3; 
+} 
+
+message PositionWindowResponse {
+  optional bool isAbove = 1;
+  optional bool isClipped = 2;
+}
+
+message Point {
+  float x = 1;
+  float y = 2;
+}
+
+message Size {
+  float width = 1;
+  float height = 2;
+}
+
+message Frame {
+  Point origin = 1;
+  Size size = 2;
+}
+
+enum Anchor {
+    CURSOR = 0;
+    LEFT_EDGE = 1;
+    RIGHT_EDGE = 2;
+    TOP_EDGE = 3;
+    BOTTOM_EDGE = 4;
+}
+
+// Requests the contents of a range of lines.
+message GetBufferRequest {
+  // See documentation on session IDs. "all" not accepted.
+  optional string session = 1;
+
+  // Which lines to return?
+  //optional LineRange line_range = 2;
+}

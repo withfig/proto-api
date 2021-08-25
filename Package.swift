@@ -23,7 +23,7 @@ let package = Package(
         .target(
             name: "Bindings",
             dependencies: [ "SwiftProtobuf" ],
-            path: "swift/Sources",
+            path: "swift/Sources/FigAPIBindings",
             exclude: [
                 "ts", 
             ])

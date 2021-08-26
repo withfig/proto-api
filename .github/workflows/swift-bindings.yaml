@@ -31,6 +31,6 @@ jobs:
         run: |
           cd swift-api-bindings
           git add Sources/FigAPIBindings/fig.pb.swift
-          git commit -m "Update protobuf definitions"
+          git commit -m "${{github.event.commits[0].message}}"
           git push origin main
   

@@ -19,6 +19,7 @@ message ServerOriginatedMessage {
   oneof submessage {
     string error = 2;  // Set if request was malformed
     PositionWindowResponse position_window_response = 100;
+    PseudoterminalExecuteResponse pseudoterminal_execute_response = 101;
   }
     
 }
@@ -37,6 +38,12 @@ message PseudoterminalExecuteRequest {
   optional bool backgroundJob = 3;
   optional bool isPipelined = 4;
   repeated EnvironmentVariable env = 5;
+}
+
+message PseudoterminalExecuteResponse {
+  string stdout = 1;
+  optional string stderr = 2;
+  optional int32 exitCode = 3; 
 }
 
 message EnvironmentVariable {

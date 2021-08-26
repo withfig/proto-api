@@ -9,6 +9,7 @@ message ClientOriginatedMessage {
       GetBufferRequest get_buffer_request = 100;
       PositionWindowRequest position_window_request = 101;
       PseudoterminalExecuteRequest pty_request = 102;
+      PseudoterminalWriteRequest pseudoterminal_write_request = 103;
   }
 }
 

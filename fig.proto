@@ -18,7 +18,7 @@ message ServerOriginatedMessage {
   // Responses to ClientOriginatedMessages of the corresponding type
   oneof submessage {
     string error = 2;  // Set if request was malformed
-    PositionWindowResponse position_window_response = 200;
+    PositionWindowResponse position_window_response = 100;
   }
     
 }

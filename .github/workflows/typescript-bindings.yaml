@@ -26,7 +26,7 @@ jobs:
       - name: "Install ts_proto from npm"
         run: |
           cd typescript-api-bindings
-          npm ci 
+          npm install --only=prod
           cd ..
 
       - name: "Compile .proto"
@@ -35,8 +35,8 @@ jobs:
       - name: "Commit changes"
         run: |
           cd typescript-api-bindings
-          mv src/fig.ts src/index.ts
-          git add src/index.ts
+          # mv src/fig.ts src/index.ts
+          git add src/fig.ts
           git commit -m "${{github.event.commits[0].message}}"
           git push origin main
   

@@ -68,12 +68,12 @@ message FilePath {
 }
 
 enum Modifiers {
-  CONTROL = 1;
-  OPTION = 2;
-  COMMAND = 3;
-  SHIFT = 4;
-  FUNCTION = 5;
-  NUMPAD = 6;
+  CONTROL = 0;
+  OPTION = 1;
+  COMMAND = 2;
+  SHIFT = 3;
+  FUNCTION = 4;
+  NUMPAD = 5;
 }
 
 message KeyEvent {

@@ -23,7 +23,9 @@ message ServerOriginatedMessage {
     string error = 2;  // Set if request was malformed
     PositionWindowResponse position_window_response = 100;
     PseudoterminalExecuteResponse pseudoterminal_execute_response = 101;
-
+    ReadFileResponse read_file_response = 102;
+    WriteFileRequest write_file_request = 103;
+    ContentsOfDirectoryRespone contents_of_directory_response = 104;
 
     Notification notification = 1000;
   }

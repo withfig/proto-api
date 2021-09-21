@@ -21,14 +21,72 @@ message ServerOriginatedMessage {
     string error = 2;  // Set if request was malformed
     PositionWindowResponse position_window_response = 100;
     PseudoterminalExecuteResponse pseudoterminal_execute_response = 101;
+
+
+    Notification notification = 1000;
   }
     
 }
 
+
+// Basic types
+
+message Point {
+  float x = 1;
+  float y = 2;
+}
+
+message Size {
+  float width = 1;
+  float height = 2;
+}
+
+message Frame {
+  Point origin = 1;
+  Size size = 2;
+}
+
+message Process {
+  optional int32 pid = 1;
+  optional string executable = 2;
+  optional string directory = 3; 
+  repeated EnvironmentVariable env = 4;
+}
+
+message FilePath {
+  optional string path = 1;
+  optional string relative_to = 2;
+  optional bool expand_tilde_in_path = 3;
+}
+
+message Screen {
+  optional Frame frame = 1;
+}
+
+message Session {
+  optional string session_id = 1;
+  optional Process frontmost_process = 2;
+  optional Environment env = 3;
+}
+
+message Application {
+  optional string bundle_identifier = 1;
+}
+
+message Window {
+  optional string window_id = 1;
+  optional Frame frame = 2;
+  optional Session current_session = 3;
+  optional Application app = 4;
+  optional Screen current_screen = 5;
+}
+
+/// Requests
+
 message PseudoterminalWriteRequest {
     oneof input {
       string text = 1;
-      string octal = 2;
+      bytes octal = 2;
 
     }
 }
@@ -63,34 +121,68 @@ message PositionWindowResponse {
   optional bool isClipped = 2;
 }
 
-message Point {
-  float x = 1;
-  float y = 2;
+message Notification {
+  oneof type {
+    EditBufferChangedNotification edit_buffer_notification = 1;
+    SettingsChangedNotification settings_changed_notification = 2;
+    ShellPromptReturnedNotification shell_prompt_returned_notification = 3;
+    LocationChangedNotification location_changed_notification = 4;
+    ProcessChangedNotification process_change_notification= 5;
+    KeybindingPressedNotification keybinding_pressed_notification = 6;
+  }
 }
 
-message Size {
-  float width = 1;
-  float height = 2;
+message EditBufferChangedNotification {
+    optional string session_id = 1;
+    optional int32 cursor = 2;
+    optional string buffer = 3;
 }
 
-message Frame {
-  Point origin = 1;
-  Size size = 2;
+message SettingsChangedNotification {
+    optional string jsonBlob = 1;
 }
 
-enum Anchor {
-    CURSOR = 0;
-    LEFT_EDGE = 1;
-    RIGHT_EDGE = 2;
-    TOP_EDGE = 3;
-    BOTTOM_EDGE = 4;
+message ShellPromptReturnedNotification {
+    optional string session_id = 1;
 }
 
-// Requests the contents of a range of lines.
-message GetBufferRequest {
-  // See documentation on session IDs. "all" not accepted.
-  optional string session = 1;
-
-  // Which lines to return?
-  //optional LineRange line_range = 2;
+message LocationChangedNotification {
+    optional string session_id = 1;
+    optional string host_name = 2;
+    optional string user_name = 3;
+    optional string directory = 4;
 }
+
+message ProcessChangedNotification {
+  optional string session_id = 1;
+  optional Process new_process = 2; 
+}
+
+
+
+message ReadFileRequest {
+  optional FilePath path = 1;
+}
+
+message ReadFileResponse {
+  optional bytes data = 1;
+}
+
+message WriteFileRequest {
+  optional FilePath path = 1;
+
+  oneof data {
+    string text = 2;
+    bytes binary = 3;
+  }
+}
+
+message ContentsOfDirectoryRequest {
+  optional FilePath directory = 1;
+}
+
+message ContentsOfDirectoryResponse {
+  repeated string file_names = 1;
+}
+
+

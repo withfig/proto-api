@@ -20,12 +20,12 @@ message ServerOriginatedMessage {
 
   // Responses to ClientOriginatedMessages of the corresponding type
   oneof submessage {
-    string error = 2;  // Set if request was malformed
+    string error = 2; 
+    bool success = 3;
     PositionWindowResponse position_window_response = 100;
     PseudoterminalExecuteResponse pseudoterminal_execute_response = 101;
     ReadFileResponse read_file_response = 102;
-    WriteFileRequest write_file_request = 103;
-    ContentsOfDirectoryRespone contents_of_directory_response = 104;
+    ContentsOfDirectoryResponse contents_of_directory_response = 103;
 
     Notification notification = 1000;
   }

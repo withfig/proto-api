@@ -12,6 +12,7 @@ message ClientOriginatedMessage {
       ReadFileRequest read_file_request = 104;
       WriteFileRequest write_file_request = 105;
       ContentsOfDirectoryRequest contents_of_directory_request = 106;
+      NotificationRequest notification_request = 107;
   }
 }
 
@@ -112,6 +113,20 @@ message Window {
 
 /// Requests
 
+message TextUpdate {
+    optional string insertion = 1;
+    optional int deletion = 2; 
+    optional int offset = 3;
+    optional bool immediate = 4;
+}
+
+message InsertTextRequest {
+  oneof type {
+    string text = 1;
+    TextUpdate update  = 2;
+  }
+}
+
 message PseudoterminalWriteRequest {
     oneof input {
       string text = 1;
@@ -170,6 +185,20 @@ message ContentsOfDirectoryResponse {
 }
 
 /// Notifications
+
+message NotificationRequest {
+  optional bool subscribe = 1;
+  optional NotificationType = 2;
+}
+
+enum NotificationType {
+  NOTIFY_ON_EDITBUFFFER_CHANGE = 1;
+  NOTIFY_ON_SETTINGS_CHANGE = 2;
+  NOTIFY_ON_PROMPT = 3;
+  NOTIFY_ON_LOCATION_CHANGE = 4
+  NOTIFY_ON_PROCESS_CHANGED = 5;
+  NOTIFY_ON_KEYBINDING_PRESSED = 6;
+}
 
 message Notification {
   oneof type {

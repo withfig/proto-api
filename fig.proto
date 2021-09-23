@@ -188,7 +188,7 @@ message ContentsOfDirectoryResponse {
 
 message NotificationRequest {
   optional bool subscribe = 1;
-  optional NotificationType = 2;
+  optional NotificationType type = 2;
 }
 
 enum NotificationType {

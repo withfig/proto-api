@@ -192,6 +192,7 @@ message NotificationRequest {
 }
 
 enum NotificationType {
+  ALL = 0;
   NOTIFY_ON_EDITBUFFFER_CHANGE = 1;
   NOTIFY_ON_SETTINGS_CHANGE = 2;
   NOTIFY_ON_PROMPT = 3;

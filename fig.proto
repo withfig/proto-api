@@ -115,8 +115,8 @@ message Window {
 
 message TextUpdate {
     optional string insertion = 1;
-    optional int deletion = 2; 
-    optional int offset = 3;
+    optional int64 deletion = 2; 
+    optional int64 offset = 3;
     optional bool immediate = 4;
 }
 

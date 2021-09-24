@@ -191,7 +191,7 @@ message ContentsOfDirectoryResponse {
 /// Settings
 
 message GetSettingsPropertyRequest {
-  optional key string = 1;
+  optional string key = 1;
 }
 
 message GetSettingsPropertyResponse {

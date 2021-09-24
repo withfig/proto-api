@@ -13,6 +13,9 @@ message ClientOriginatedMessage {
       WriteFileRequest write_file_request = 105;
       ContentsOfDirectoryRequest contents_of_directory_request = 106;
       NotificationRequest notification_request = 107;
+      GetSettingsPropertyRequest get_settings_property_request = 108;
+      UpdateSettingsPropertyRequest update_settings_property_request = 109;
+
   }
 }
 
@@ -27,6 +30,7 @@ message ServerOriginatedMessage {
     PseudoterminalExecuteResponse pseudoterminal_execute_response = 101;
     ReadFileResponse read_file_response = 102;
     ContentsOfDirectoryResponse contents_of_directory_response = 103;
+    GetSettingsPropertyResponse get_settings_property_response = 104;
 
     Notification notification = 1000;
   }
@@ -183,6 +187,23 @@ message ContentsOfDirectoryRequest {
 message ContentsOfDirectoryResponse {
   repeated string file_names = 1;
 }
+
+/// Settings
+
+message GetSettingsPropertyRequest {
+  optional key string = 1;
+}
+
+message GetSettingsPropertyResponse {
+  optional string jsonBlob = 1;
+  optional bool isDefault = 2; 
+}
+
+message UpdateSettingsPropertyRequest {
+  optional string key = 1;
+  optional string value = 2;
+}
+
 
 /// Notifications
 

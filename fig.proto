@@ -15,7 +15,7 @@ message ClientOriginatedMessage {
       NotificationRequest notification_request = 107;
       GetSettingsPropertyRequest get_settings_property_request = 108;
       UpdateSettingsPropertyRequest update_settings_property_request = 109;
-
+      InsertTextRequest insert_text_request = 110;
   }
 }
 
@@ -245,6 +245,7 @@ message SettingsChangedNotification {
 
 message ShellPromptReturnedNotification {
     optional string session_id = 1;
+    optional Process shell = 2;
 }
 
 message LocationChangedNotification {

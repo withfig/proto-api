@@ -261,6 +261,7 @@ message ProcessChangedNotification {
 
 message KeybindingPressedNotification {
   optional KeyEvent keypress = 1;
+  optional string action = 2;
 }
 
 

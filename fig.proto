@@ -16,6 +16,7 @@ message ClientOriginatedMessage {
       GetSettingsPropertyRequest get_settings_property_request = 108;
       UpdateSettingsPropertyRequest update_settings_property_request = 109;
       InsertTextRequest insert_text_request = 110;
+      UpdateApplicationPropertiesRequest update_application_properties_reuest = 111;
   }
 }
 
@@ -203,6 +204,13 @@ message UpdateSettingsPropertyRequest {
   optional string key = 1;
   optional string value = 2;
 }
+
+/// App properties
+
+message UpdateApplicationPropertiesRequest {
+  optional bool interceptBoundKeystrokes = 1;
+}
+
 
 
 /// Notifications

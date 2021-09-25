@@ -35,6 +35,7 @@ jobs:
       - name: "Commit changes"
         run: |
           cd typescript-api-bindings
+          git fetch origin main
           # mv src/fig.ts src/index.ts
           git add src/fig.ts
           git commit -m "${{github.event.commits[0].message}}"

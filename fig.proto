@@ -228,6 +228,7 @@ enum NotificationType {
   NOTIFY_ON_LOCATION_CHANGE = 4;
   NOTIFY_ON_PROCESS_CHANGED = 5;
   NOTIFY_ON_KEYBINDING_PRESSED = 6;
+  NOTIFY_ON_FOCUS_CHANGED = 7;
 }
 
 message Notification {
@@ -238,6 +239,7 @@ message Notification {
     LocationChangedNotification location_changed_notification = 4;
     ProcessChangedNotification process_change_notification= 5;
     KeybindingPressedNotification keybinding_pressed_notification = 6;
+    WindowFocusChangedNotification window_focus_changed_notification = 7;
   }
 }
 
@@ -271,6 +273,10 @@ message ProcessChangedNotification {
 message KeybindingPressedNotification {
   optional KeyEvent keypress = 1;
   optional string action = 2;
+}
+
+message WindowFocusChangedNotification {
+  optional Window window = 1;
 }
 
 

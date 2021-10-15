@@ -17,6 +17,7 @@ message ClientOriginatedMessage {
       UpdateSettingsPropertyRequest update_settings_property_request = 109;
       InsertTextRequest insert_text_request = 110;
       UpdateApplicationPropertiesRequest update_application_properties_request = 111;
+      DestinationOfSymlinkRequest destination_of_symlink_request = 112;
   }
 }
 
@@ -32,6 +33,7 @@ message ServerOriginatedMessage {
     ReadFileResponse read_file_response = 102;
     ContentsOfDirectoryResponse contents_of_directory_response = 103;
     GetSettingsPropertyResponse get_settings_property_response = 104;
+    DestinationOfSymlinkResponse destination_of_symlink_response = 105;
 
     Notification notification = 1000;
   }
@@ -187,6 +189,14 @@ message ContentsOfDirectoryRequest {
 
 message ContentsOfDirectoryResponse {
   repeated string file_names = 1;
+}
+
+message DestinationOfSymlinkRequest {
+    optional FilePath path = 1;
+}
+
+message DestinationOfSymlinkResponse {
+    optional FilePath destination = 1;
 }
 
 /// Settings

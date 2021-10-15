@@ -215,15 +215,6 @@ message UpdateSettingsPropertyRequest {
   optional string value = 2;
 }
 
-/// App properties
-
-message UpdateApplicationPropertiesRequest {
-  optional bool interceptBoundKeystrokes = 1;
-  oneof properties {
-    repeated Actions actions = 2;
-  }
-
-}
 
 /// Actions
 
@@ -241,6 +232,13 @@ message Action {
   optional string category = 4; 
   optional ActionAvailability availability = 5; // when can this action be performed
 
+}
+
+/// App properties
+
+message UpdateApplicationPropertiesRequest {
+  optional bool interceptBoundKeystrokes = 1;
+  optional Action actions = 2;
 }
 
 

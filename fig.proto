@@ -238,7 +238,8 @@ message Action {
 
 message UpdateApplicationPropertiesRequest {
   optional bool interceptBoundKeystrokes = 1;
-  optional Action actions = 2;
+  repeated Action actions = 2;
+
 }
 
 

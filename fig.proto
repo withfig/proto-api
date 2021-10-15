@@ -279,5 +279,22 @@ message WindowFocusChangedNotification {
   optional Window window = 1;
 }
 
+/// Constants
+// Can be found under fig.constants. Certain legacy constants are included at the top-level for backwards compatibility.
+message Constants {
+  optional string version = 1; // the current version of Fig
+  optional string build = 2;  // the current build of Fig 
+  optional string cli = 3; // the path to the figcli executable
+  optional string bundlePath = 4; // the filepath of the macOS bundle
+  optional string remote = 5; // the remote URL where apps are loaded from
+  optional string home = 6; // the user's home directory 
+  optional string user = 7; // the user's name (equivalent to running `whoami`)
+  optional string defaultPath = 8; // the default macOS $PATH
+  optional string jsonMessageRecieved = 9;
+  optional string jsonMessageHandler = 10;
+  optional string protoMessageRecieved = 11;
+  optional string protoMessageHandler = 12;
+  optional string themes = 13; // a comma-separated list of all themes
+}
 
 

@@ -33,7 +33,7 @@ message ServerOriginatedMessage {
     ReadFileResponse read_file_response = 102;
     ContentsOfDirectoryResponse contents_of_directory_response = 103;
     GetSettingsPropertyResponse get_settings_property_response = 104;
-    DestinationOfSymbolicResponse destination_of_symbolic_link_response = 105;
+    DestinationOfSymbolicLinkResponse destination_of_symbolic_link_response = 105;
 
     Notification notification = 1000;
   }

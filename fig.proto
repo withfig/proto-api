@@ -219,8 +219,29 @@ message UpdateSettingsPropertyRequest {
 
 message UpdateApplicationPropertiesRequest {
   optional bool interceptBoundKeystrokes = 1;
+  oneof properties {
+    repeated Actions actions = 2;
+  }
+
 }
 
+/// Actions
+
+enum ActionAvailability {
+  ALWAYS = 0;
+  WHEN_FOCUSED = 1; // the action can only be performed when the app has keyboard focus
+  WHEN_VISIBLE = 2; // the action can only be performed when the app is visible
+  WHEN_HIDDEN = 3; // the action can only be performed when the app is hidden
+}
+
+message Action {
+  optional string identifier = 1; // unique identifier for the action; not user facing.
+  optional string name = 2; // name of action, will appear in user interfaces.
+  optional string description = 3; // a quick summary of what the action will do
+  optional string category = 4; 
+  optional ActionAvailability availability = 5; // when can this action be performed
+
+}
 
 
 /// Notifications
